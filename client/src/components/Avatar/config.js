@@ -27,7 +27,7 @@ export const characters = [
         "shirtStyle": "polo",
         "glassesStyle": "none",
         "hairColor": "#000",
-        "hairStyle": "thick",
+        "hairStyle": "mohawk",
         "hatStyle": "none",
         "hatColor": "#506AF4",
         "eyeBrowStyle": "up",

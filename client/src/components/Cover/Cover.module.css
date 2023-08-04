@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  filter: sepia(45%);
   align-items: center;
   position: relative;
 }

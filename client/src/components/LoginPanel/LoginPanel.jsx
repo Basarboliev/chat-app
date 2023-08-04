@@ -5,6 +5,7 @@ import Description from '../Description/Description';
 import { LoremIpsum } from 'react-lorem-ipsum';
 import Avatar from '../Avatar/Avatar';
 import Footer from '../Footer/Footer';
+import SigninForm from '../SigninForm/SigninForm';
 
 const onChange = (key) => {
     console.log(key);
@@ -12,75 +13,67 @@ const onChange = (key) => {
 
 const lorem = <LoremIpsum p={2} />;
 
+//Items in the Signin form tab
 const items = [
     {
         key: '1',
         label: `join channel`.toUpperCase(),
-        children: <Form
-            name='join'
-            labelCol={{
-                span: 8,
-            }}
-            wrapperCol={{
-                span: 8,
-            }}
+        children: <SigninForm
+        formName='join'
+        nicknameItem={{
+            label: 'Nickname',
+            name: 'nickname_join_channel',
+            message: 'Please enter your nickname!',
+        }}
+        channelItem={{
+            label: 'Channel ID',
+            name: 'channel_join',
+            message: 'Please enter channel ID!',
+        }}
+        avatars={{
 
-            autoComplete="off"
-        >
-            <Form.Item
-                label="Nickname: "
-                name="nickname"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your nickname!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-
-            <Form.Item
-                label="Channel: "
-                name="channel"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please enter the channel name!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-
-            <Form.Item
-                label="Choose you avatar: "
-                name="avatar"
-                rules={[{
-                    required: true,
-                    message: "Please select your avatar",
-                    
-                }]}
-            >
-                <div className={styles.avatars}>
-                    <Avatar character={0} />
-                    <Avatar character={3} />
-                    <Avatar character={1} />
-                    <Avatar character={2} />
-                </div>
-            </Form.Item>
-
-            <div className={styles.submitButtonContainer}>
-                <Button type="primary" htmlType="submit" block={false} className={styles.join}>
-                    JOIN TO THE CHANNEL
-                </Button>
-            </div>
-        </Form>,
+            message: 'Please select your avatar!',
+            collection: [
+                <Avatar character={0} key={0}/>,
+                <Avatar character={2} key={2}/>,
+                <Avatar character={1} key={1}/>,
+                <Avatar character={3} key={3}/>,
+            ],
+        }}
+        submit={{
+            label: 'join channel'
+        }}
+    />
     },
     {
         key: '2',
-        label: `Create Channel`,
-        children: `Content of Tab Pane 2`,
+        label: `Create Channel`.toUpperCase(),
+        children: <SigninForm
+            formName='create'
+            nicknameItem={{
+                label: 'Nickname',
+                name: 'nickname_create_channel',
+                message: 'Please enter your nickname!',
+            }}
+            channelItem={{
+                label: 'Channel ID',
+                name: 'channel_create',
+                message: 'Please enter channel ID!',
+            }}
+            avatars={{
+
+                message: 'Please select your avatar!',
+                collection: [
+                    <Avatar character={0} key={0}/>,
+                    <Avatar character={2} key={2}/>,
+                    <Avatar character={1} key={1}/>,
+                    <Avatar character={3} key={3}/>,
+                ],
+            }}
+            submit={{
+                label: 'create channel'
+            }}
+        />
     },
 ];
 
