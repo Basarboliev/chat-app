@@ -1,11 +1,11 @@
 import React from 'react';
-import { Tabs, Button, Checkbox, Form, Input, Badge, message } from 'antd';
-import styles from './LoginPanel.module.css';
+import { Tabs } from 'antd';
+import styles from './LoginSection.module.css';
 import Description from '../Description/Description';
 import { LoremIpsum } from 'react-lorem-ipsum';
 import Avatar from '../Avatar/Avatar';
-import Footer from '../Footer/Footer';
 import SigninForm from '../SigninForm/SigninForm';
+
 
 const onChange = (key) => {
     console.log(key);
@@ -19,31 +19,31 @@ const items = [
         key: '1',
         label: `join channel`.toUpperCase(),
         children: <SigninForm
-        formName='join'
-        nicknameItem={{
-            label: 'Nickname',
-            name: 'nickname_join_channel',
-            message: 'Please enter your nickname!',
-        }}
-        channelItem={{
-            label: 'Channel ID',
-            name: 'channel_join',
-            message: 'Please enter channel ID!',
-        }}
-        avatars={{
+            formName='join'
+            nicknameItem={{
+                label: 'Nickname',
+                name: 'nickname_join_channel',
+                message: 'Please enter your nickname!',
+            }}
+            channelItem={{
+                label: 'Channel ID',
+                name: 'channel_join',
+                message: 'Please enter channel ID!',
+            }}
+            avatars={{
 
-            message: 'Please select your avatar!',
-            collection: [
-                <Avatar character={0} key={0}/>,
-                <Avatar character={2} key={2}/>,
-                <Avatar character={1} key={1}/>,
-                <Avatar character={3} key={3}/>,
-            ],
-        }}
-        submit={{
-            label: 'join channel'
-        }}
-    />
+                message: 'Please select your avatar!',
+                collection: [
+                    <Avatar character={0} key={0} />,
+                    <Avatar character={2} key={2} />,
+                    <Avatar character={1} key={1} />,
+                    <Avatar character={3} key={3} />,
+                ],
+            }}
+            submit={{
+                label: 'join channel'
+            }}
+        />
     },
     {
         key: '2',
@@ -64,10 +64,10 @@ const items = [
 
                 message: 'Please select your avatar!',
                 collection: [
-                    <Avatar character={0} key={0}/>,
-                    <Avatar character={2} key={2}/>,
-                    <Avatar character={1} key={1}/>,
-                    <Avatar character={3} key={3}/>,
+                    <Avatar character={0} key={0} />,
+                    <Avatar character={2} key={2} />,
+                    <Avatar character={1} key={1} />,
+                    <Avatar character={3} key={3} />,
                 ],
             }}
             submit={{
@@ -96,7 +96,6 @@ const LoginPanel = () => {
                     centered
                 />
             </div>
-            <Footer />
         </div>
     );
 }
