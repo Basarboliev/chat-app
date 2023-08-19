@@ -1,9 +1,19 @@
-import { Tabs, Button, Checkbox, Form, Input, Badge, message } from 'antd';
+import { Button, Form, Input } from 'antd';
 import styles from './SigninForm.module.css';
 
-const SigninForm = ({formName, nicknameItem, channelItem, avatars, submit}) => {
+const SigninForm = (
+    {
+        formName,
+        nicknameItem,
+        channelItem,
+        avatars,
+        submit,
+        onFinish,
+        onChangeNickname,
+        onChangeChannelId
+    }) => {
     return (
-        <Form
+        <Form onFinish={onFinish}
             name={formName}
             labelCol={{
                 span: 8,
@@ -23,7 +33,7 @@ const SigninForm = ({formName, nicknameItem, channelItem, avatars, submit}) => {
                     },
                 ]}
             >
-                <Input />
+                <Input onChange={onChangeNickname} />
             </Form.Item>
 
             <Form.Item
@@ -36,7 +46,7 @@ const SigninForm = ({formName, nicknameItem, channelItem, avatars, submit}) => {
                     },
                 ]}
             >
-                <Input />
+                <Input onChange={onChangeChannelId} />
             </Form.Item>
 
             <Form.Item

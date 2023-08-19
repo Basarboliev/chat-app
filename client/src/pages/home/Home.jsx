@@ -6,12 +6,12 @@ import Footer from "../../components/Footer/Footer";
 import ContactParallax from "../../components/ContactParallax/ContactParallax";
 import Contact from "../../components/ContactSection/Contact";
 
-const Home = () => {
+const Home = ({socket}) => {
 
     return (
         <>
             <Cover />
-            <LoginSection />
+            <LoginSection socket={socket}/>
             <Statistics />
             <ContactParallax label='CONTACT US'/>
             <Contact />

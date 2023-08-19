@@ -23,10 +23,11 @@ const Contact = () => {
                         <span className={styles.label}> mad.of.gravity@gmail.com </span>
                     </div>
                     <div className={styles.note}>
-                        Swing by for a cup of ☕, or leave me a note:
+                        Swing by for a cup of ☕, or write to me in the channel: <span className={styles.support}>support</span>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 }

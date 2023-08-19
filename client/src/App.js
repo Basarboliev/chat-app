@@ -5,15 +5,20 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from "./pages/home/Home";
+import Channel from "./pages/channel/Channel";
+import { io } from "socket.io-client";
+const socket = io();
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Home />}>
-      {/* <Route path="dashboard" element={<Dashboard />} /> */}
-      {/* ... etc. */}
-    </Route>
-  )
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home socket={socket}/>
+  }, {
+    path: "channel/:channelId",
+    element: <Channel socket={socket}/>,
+  }
+]);
+
 
 function App() {
   return (

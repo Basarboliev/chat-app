@@ -10,6 +10,12 @@
   height: 3.5vw;
 }
 
+.avatar:hover {
+  opacity: 0.7;
+  border: 4px double black;
+  border-radius: 50%;
+}
+
 @media only screen and (max-width: 768px) {
   .character {
     width: 10vw;

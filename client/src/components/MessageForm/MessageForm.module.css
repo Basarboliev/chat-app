@@ -1,0 +1,18 @@
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputWrapper {
+    width: 30vw;
+}
+
+@media only screen and (max-width: 960px) {
+    /* For smarthphones and tablets: */
+    .inputWrapper {
+        width: 95vw;
+        height: 4vh;
+    }
+}

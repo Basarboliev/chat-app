@@ -16,18 +16,78 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //Chat rooms that contain a room code and users { 123: ['user1'], chat-room123: ['user1','user2', 'user3'] }
-const rooms = {};
+const channels = {
+  support: ['user1', 'user2', 'user3', 'user4', 'user5']
+};
 
 app.get('/', (req, res) => {
-    res.send("Hi there!");
+  res.send("Hi there!");
 })
 
-app.get("/api/:roomCode", (req, res) => {
-    const code = req.params.roomCode;
-    const codeExists = roomToUsers[roomCode] ? true : false;
-    res.json({ codeExists: codeExists });
+
+app.get("/api/:channelId/:nickname", (req, res) => {
+  const exists = channels.hasOwnProperty(req.params.channelId);
+
+  res.json({ exists: exists });
+});
+
+
+io.on("connection", (socket) => {
+
+
+  socket.on("create channel", (channelID, nickname) => {
+    const users = [];
+    users.push(nickname);
+    channels[channelID] = users;
+
+    console.log("Channels: " + JSON.stringify(channels));
+    socket.join(channelID);  
+    const redirect = true;
+    io.emit("create channel", redirect);
   });
 
-server.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
+
+  socket.on("join channel", (channelID, nickname) => {
+    //Checking if a nickname is already in use
+    const nicknames = channels[channelID];
+    let error = null;
+
+    if (nicknames.includes(nickname)) {
+      error = "The nickname is already taken!";
+    }
+
+    //If current nickname exist on the channel send an error message to the client
+    if (error) {
+      io.emit("join error", error);
+    } else {
+      //Put the nickname in the channel
+      channels[channelID].push(nickname);
+      socket.join(channelID);
+
+      const redirect = true;
+      io.emit("join channel", redirect);
+    }
   });
+
+
+  socket.on("update users", (channelId) => {
+    const users = channels[channelId];
+    io.to(channelId).emit("update users", users);
+  })
+
+  
+  socket.on("chat message", ({avatar, sender, message, channelID, time}) => {
+    io.to(channelID).emit("chat message", { 
+      avatar: avatar,
+      sender: sender, 
+      message: message,
+      time: time, 
+    });
+  });
+
+
+});
+
+server.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
