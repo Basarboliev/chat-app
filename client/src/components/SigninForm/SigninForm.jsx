@@ -50,7 +50,7 @@ const SigninForm = (
             </Form.Item>
 
             <Form.Item
-                label="Choose you avatar: "
+                label="Choose your avatar: "
                 name="avatar"
                 rules={[{
                     required: true,

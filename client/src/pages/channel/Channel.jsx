@@ -5,7 +5,8 @@ import styles from './Channel.module.css';
 import moment from 'moment';
 import Message from '../../components/Message/Message';
 import Messages from '../../components/Messages/Messages';
-import MessageForm from '../../components/MessageForm/MessageForm';
+import InputEmoji from 'react-input-emoji';
+import { v4 as uuidv4 } from 'uuid';
 
 const lorem = <LoremIpsum p={65} />;
 
@@ -16,19 +17,71 @@ const Channel = ({ socket }) => {
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
+    const messageId = uuidv4();
 
 
-    const sendMessage = (e) => {
-        e.preventDefault();
+    const sendMessage = () => {
+        console.log(message)
         socket.emit("chat message", ({
+            id: messageId,
             avatar: avatar,
             sender: nickname,
             message: message,
             channelID: channelId,
             time: moment().format("hh:mm a"),
+            likes: 0,
+            usersLikedTheMessage: [],
         }));
-        setMessage('');
+
     }
+
+
+    const getFilteredMessage = (id) => {
+        const filteredArray = messages.filter(message => message.id === id);
+        const filteredMessage = filteredArray[0];
+
+        return filteredMessage;
+    }
+
+
+    const likeMessage = (message, user) => {
+        message.likes += 1;
+        message.usersLikedTheMessage.push(user);
+
+        return message;
+    }
+
+
+    const dislikeMessage = (message, user) => {
+        message.likes -= 1;
+        const userIndex = message.usersLikedTheMessage.indexOf(user);
+
+        message.usersLikedTheMessage = [
+            ...message.usersLikedTheMessage.slice(0, userIndex),
+            ...message.usersLikedTheMessage.slice(userIndex + 1)
+        ];
+
+        return message;
+    }
+
+
+    const handleLikeButtonClick = (id, index, user) => {
+        let filteredMessage = getFilteredMessage(id);
+
+        if (!filteredMessage.usersLikedTheMessage.includes(user)) {
+            filteredMessage = likeMessage(filteredMessage, user);
+        } else {
+            filteredMessage = dislikeMessage(filteredMessage, user);
+        }
+
+        const copyOfMessages = [...messages];
+        const firstPartOfMessages = copyOfMessages.slice(0, index);
+        const secondPartOfMessages = copyOfMessages.slice(index + 1);
+
+        const newMessages = [...firstPartOfMessages, filteredMessage, ...secondPartOfMessages];
+        socket.emit("update messages", [...newMessages]);
+    }
+
 
 
     useEffect(() => {
@@ -47,6 +100,13 @@ const Channel = ({ socket }) => {
             console.log("Chat message: " + JSON.stringify(message))
             setMessages(messages => [...messages, message]);
         });
+
+
+        socket.on("update messages", (messages) => {
+            console.log(JSON.stringify(messages))
+            setMessages([...messages]);
+        });
+
     }, []);
 
 
@@ -60,9 +120,25 @@ const Channel = ({ socket }) => {
                     <Messages>
                         {
                             messages.map((message, index) => {
+                                const listItem = {
+                                    display: "flex",
+                                    justifyContent: (message.sender === nickname) ? "flex-end" : "flex-start",
+                                }
+
+                                const id = message.id;
+                                const heartColor = message.usersLikedTheMessage.includes(nickname) ? "red" : "lightgray";
+
                                 return (
-                                    <li key={index}>
-                                       <Message sender={message.sender} message={message.message} time={message.time} avatar={message.avatar}/>
+                                    <li key={id} style={listItem} >
+                                        <Message
+                                            sender={message.sender}
+                                            message={message.message}
+                                            time={message.time}
+                                            avatar={message.avatar}
+                                            numberOfLikes={message.likes}
+                                            heartColor={heartColor}
+                                            onClickLikeButton={() => handleLikeButtonClick(id, index, nickname)}
+                                        />
                                     </li>
                                 );
                             })
@@ -84,11 +160,13 @@ const Channel = ({ socket }) => {
                 </aside>
             </div>
             <div className={styles.formWrapper}>
-                <MessageForm
-                    placeholder='Write your message...'
-                    inputValue={message}
-                    onInputChange={e => setMessage(e.target.value)}
-                    onSubmit={e => sendMessage(e)}
+                <InputEmoji
+                    setValue={message}
+                    onChange={setMessage}
+                    onEnter={sendMessage}
+                    cleanOnEnter
+
+                    placeholder="Type a message"
                 />
             </div>
         </div>

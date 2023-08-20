@@ -146,10 +146,10 @@ const LoginSection = ({ socket }) => {
                 avatars={{
                     message: 'Please select your avatar!',
                     collection: [
-                        <Avatar character={0} key={0} onAvatarClick={(e) => setCreateData({ ...joinData, avatar: 0 })} />,
-                        <Avatar character={2} key={2} onAvatarClick={(e) => setCreateData({ ...joinData, avatar: 2 })} />,
-                        <Avatar character={1} key={1} onAvatarClick={(e) => setCreateData({ ...joinData, avatar: 1 })} />,
-                        <Avatar character={3} key={3} onAvatarClick={(e) => setCreateData({ ...joinData, avatar: 3 })} />,
+                        <Avatar character={0} key={0} onAvatarClick={(e) => setCreateData({ ...createData, avatar: 0 })} />,
+                        <Avatar character={2} key={2} onAvatarClick={(e) => setCreateData({ ...createData, avatar: 2 })} />,
+                        <Avatar character={1} key={1} onAvatarClick={(e) => setCreateData({ ...createData, avatar: 1 })} />,
+                        <Avatar character={3} key={3} onAvatarClick={(e) => setCreateData({ ...createData, avatar: 3 })} />,
                     ],
                 }}
                 submit={{

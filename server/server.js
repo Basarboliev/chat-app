@@ -76,16 +76,23 @@ io.on("connection", (socket) => {
   })
 
   
-  socket.on("chat message", ({avatar, sender, message, channelID, time}) => {
+  socket.on("chat message", ({id, avatar, sender, message, channelID, time, likes, usersLikedTheMessage}) => {
     io.to(channelID).emit("chat message", { 
+      id: id,
       avatar: avatar,
       sender: sender, 
       message: message,
       time: time, 
+      likes: likes,
+      usersLikedTheMessage: usersLikedTheMessage,
     });
   });
 
 
+  socket.on("update messages", (messages) => {
+    console.log("Messages: " + JSON.stringify(messages));
+    io.emit("update messages", messages);
+  });
 });
 
 server.listen(PORT, () => {
