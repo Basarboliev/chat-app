@@ -1,5 +1,4 @@
 {
-  "homepage": "http://irc-chat.github.io/chat-app",
   "name": "client",
   "version": "0.1.0",
   "proxy": "http://localhost:8080/",
