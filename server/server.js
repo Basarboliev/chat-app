@@ -14,6 +14,7 @@ const path = require("path");
 // Middleware setup
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.static('./client/build'));
 
 //Chat rooms that contain a room code and users { 123: ['user1'], chat-room123: ['user1','user2', 'user3'] }
 const channels = {
