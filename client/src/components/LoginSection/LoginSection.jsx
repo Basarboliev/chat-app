@@ -7,7 +7,20 @@ import { LoremIpsum } from 'react-lorem-ipsum';
 import SigninForm from '../SigninForm/SigninForm';
 
 const lorem = <LoremIpsum p={2} />;
-
+const tips = (
+    <div className={styles.tips}>
+        <h1 className={styles.title}>Join a channel</h1>
+        <p className={styles.body}>
+            🔥  If you want to join a specific channel, 
+            then the channel must exist on the server (it must be created in the CREATE CHANNEL section).
+            Type your unique nickname and then the channel name... 
+        </p> <br/> <br/>
+        <h1 className={styles.title}>Create a channel</h1>
+        <p className={styles.body}>
+            🔥  Create your own channel by typing your unique nickname followed by the channel name. 
+        </p>
+    </div>
+);
 
 const LoginSection = ({ socket }) => {
     const navigate = useNavigate();
@@ -310,7 +323,7 @@ const LoginSection = ({ socket }) => {
                 <img className={styles.img} src='./join.jpg' />
 
                 <div className={styles.description}>
-                    <Description title="Tips" bodyContent={lorem} />
+                    <Description title="Tips" bodyContent={tips} />
                 </div>
             </div>
             <div className={styles.tabs}>
