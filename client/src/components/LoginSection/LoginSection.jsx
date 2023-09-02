@@ -99,7 +99,8 @@ const LoginSection = ({ socket }) => {
                     //If channel does not exists, write an error message to the user
                     setError("⚠️ The channel does not exists!");
                 }
-            });
+            })
+            .catch(error => console.log('There was an error', error));
     }
 
 
@@ -120,7 +121,8 @@ const LoginSection = ({ socket }) => {
                     //If channel exists, write an error message to the user
                     setError("⚠️ The channel already exists. Please create a new one.");
                 }
-            });
+            })
+            .catch(error => console.log('There was an error', error));
     }
 
 
