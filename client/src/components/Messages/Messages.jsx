@@ -1,10 +1,11 @@
 import styles from './Messages.module.css';
+import ScrollToBottom from "react-scroll-to-bottom";
 
-const Messages = ({children}) => {
+const Messages = ({ children }) => {
     return (
-        <div className={styles.messages}>
+        <ScrollToBottom className={styles.messages}>
             {children}
-        </div>
+        </ScrollToBottom>
     );
 }
 

@@ -15,21 +15,36 @@ const LoginSection = ({ socket }) => {
     const [joinData, setJoinData] = useState({
         nickname: '',
         channelId: '',
-        avatar: 0
     });
 
     const [createData, setCreateData] = useState({
         nickname: '',
         channelId: '',
-        avatar: 0
     });
 
     const [error, setError] = useState('');
     const [redirectAfterJoin, setRedirectAfterJoin] = useState(false);
     const [redirectAfterCreate, setRedirectAfterCreate] = useState(false);
-
+    const [avatarConfig, setAvatarConfig] = useState({
+        sex: "man",
+        faceColor: "#F9C9B6",
+        earSize: "small",
+        eyeStyle: "smile",
+        noseStyle: "short",
+        mouthStyle: "peace",
+        shirtStyle: "short",
+        glassesStyle: "none",
+        hairColor: "#000",
+        hairStyle: "thick",
+        hatStyle: "none",
+        hatColor: "#F48150",
+        eyeBrowStyle: "up",
+        shirtColor: "#77311D",
+        bgColor: "#D2EFF3"
+    });
 
     useEffect(() => {
+
         socket.on("create channel", redirect => {
             setRedirectAfterCreate(redirect);
         });
@@ -48,11 +63,13 @@ const LoginSection = ({ socket }) => {
 
     if (redirectAfterJoin) {
         navigate(`channel/${joinData.channelId}`);
-    } 
+    }
+
 
     if (redirectAfterCreate) {
         navigate(`channel/${createData.channelId}`);
     }
+
 
     //Event handlers
     const handleJoin = () => {
@@ -61,7 +78,9 @@ const LoginSection = ({ socket }) => {
             .then(data => {
                 if (data.exists) {
                     localStorage.setItem("nickname", joinData.nickname);
-                    localStorage.setItem("avatar", joinData.avatar);
+                    const avatar = JSON.stringify(avatarConfig);
+                    localStorage.setItem("avatar", avatar);
+                    console.log("Avatar config: " + JSON.stringify(avatarConfig));
                     socket.emit("join channel", joinData.channelId, joinData.nickname);
                 } else {
                     //If channel does not exists, write an error message to the user
@@ -81,7 +100,7 @@ const LoginSection = ({ socket }) => {
                 //If the channel does not exist, create a new one
                 if (!data.exists) {
                     localStorage.setItem("nickname", createData.nickname);
-                    localStorage.setItem("avatar", createData.avatar);
+                    localStorage.setItem("avatar", avatarConfig);
                     socket.emit("create channel", createData.channelId, createData.nickname);
                 } else {
                     //If channel exists, write an error message to the user
@@ -90,6 +109,120 @@ const LoginSection = ({ socket }) => {
             });
     }
 
+
+    const handleFaceColorChange = (color) => {
+        const hexColor = `#${color}`;
+
+        setAvatarConfig({
+            ...avatarConfig,
+            faceColor: hexColor,
+        });
+    }
+
+
+    const handleHairColorChange = (color) => {
+        const hexColor = `#${color}`;
+
+        console.log("Hair color: " + hexColor);
+        setAvatarConfig({
+            ...avatarConfig,
+            hairColor: hexColor,
+        });
+    }
+
+
+    const handleShirtColorChange = (color) => {
+        const hexColor = `#${color}`;
+
+        console.log("Hair color: " + hexColor);
+        setAvatarConfig({
+            ...avatarConfig,
+            shirtColor: hexColor,
+        });
+    }
+
+
+    const handleBackgroundColorChange = (color) => {
+        const hexColor = `#${color}`;
+
+        console.log("Hair color: " + hexColor);
+        setAvatarConfig({
+            ...avatarConfig,
+            bgColor: hexColor,
+        });
+    }
+
+
+    const handleGenderChange = (e) => {
+        setAvatarConfig({
+            ...avatarConfig,
+            sex: e.target.value
+        });
+    }
+
+
+    const handleEarSizeChange = (e) => {
+        setAvatarConfig({
+            ...avatarConfig,
+            earSize: e.target.value
+        });
+    }
+
+
+    const handleEyeStyleChange = (e) => {
+        setAvatarConfig({
+            ...avatarConfig,
+            eyeStyle: e.target.value
+        });
+    }
+
+
+    const handleNoseStyleChange = (e) => {
+        setAvatarConfig({
+            ...avatarConfig,
+            noseStyle: e.target.value
+        });
+    }
+
+
+    const handleMouthStyleChange = (e) => {
+        setAvatarConfig({
+            ...avatarConfig,
+            mouthStyle: e.target.value
+        });
+    }
+
+
+    const handleShirtStyleChange = (e) => {
+        setAvatarConfig({
+            ...avatarConfig,
+            shirtStyle: e.target.value
+        });
+    }
+
+
+    const handleGlassesStyleChange = (e) => {
+        setAvatarConfig({
+            ...avatarConfig,
+            glassesStyle: e.target.value
+        });
+    }
+
+
+    const handleEyeBrowStyleChange = (e) => {
+        setAvatarConfig({
+            ...avatarConfig,
+            eyeBrowStyle: e.target.value
+        });
+    }
+
+
+    const handleHairStyleChange = (e) => {
+        setAvatarConfig({
+            ...avatarConfig,
+            hairStyle: e.target.value
+        });
+    }
 
     //Items in the Signin form tab
     const items = [
@@ -111,15 +244,20 @@ const LoginSection = ({ socket }) => {
                     name: 'channel_join',
                     message: 'Please enter channel ID!',
                 }}
-                avatars={{
-                    message: 'Please select your avatar!',
-                    collection: [
-                        <Avatar character={0} key={0} onAvatarClick={(e) => setJoinData({ ...joinData, avatar: 0 })} />,
-                        <Avatar character={2} key={2} onAvatarClick={(e) => setJoinData({ ...joinData, avatar: 2 })} />,
-                        <Avatar character={1} key={1} onAvatarClick={(e) => setJoinData({ ...joinData, avatar: 1 })} />,
-                        <Avatar character={3} key={3} onAvatarClick={(e) => setJoinData({ ...joinData, avatar: 3 })} />,
-                    ],
-                }}
+                config={avatarConfig}
+                onFaceColorChange={handleFaceColorChange}
+                onHairColorChange={handleHairColorChange}
+                onShirtColorChange={handleShirtColorChange}
+                onBackgroundColorChange={handleBackgroundColorChange}
+                onGenderChange={handleGenderChange}
+                onEarSizeChange={handleEarSizeChange}
+                onEyeStyleChange={handleEyeStyleChange}
+                onNoseStyleChange={handleNoseStyleChange}
+                onMouthStyleChange={handleMouthStyleChange}
+                onShirtStyleChange={handleShirtStyleChange}
+                onGlassesStyleChange={handleGlassesStyleChange}
+                onEyeBrowStyleChange={handleEyeBrowStyleChange}
+                onHairStyleChange={handleHairStyleChange}
                 submit={{
                     label: 'join channel'
                 }}
@@ -138,20 +276,26 @@ const LoginSection = ({ socket }) => {
                     name: 'nickname_create_channel',
                     message: 'Please enter your nickname!',
                 }}
+
                 channelItem={{
                     label: 'Channel ID',
                     name: 'channel_create',
                     message: 'Please enter channel ID!',
                 }}
-                avatars={{
-                    message: 'Please select your avatar!',
-                    collection: [
-                        <Avatar character={0} key={0} onAvatarClick={(e) => setCreateData({ ...createData, avatar: 0 })} />,
-                        <Avatar character={2} key={2} onAvatarClick={(e) => setCreateData({ ...createData, avatar: 2 })} />,
-                        <Avatar character={1} key={1} onAvatarClick={(e) => setCreateData({ ...createData, avatar: 1 })} />,
-                        <Avatar character={3} key={3} onAvatarClick={(e) => setCreateData({ ...createData, avatar: 3 })} />,
-                    ],
-                }}
+                config={avatarConfig}
+                onFaceColorChange={handleFaceColorChange}
+                onHairColorChange={handleHairColorChange}
+                onShirtColorChange={handleShirtColorChange}
+                onBackgroundColorChange={handleBackgroundColorChange}
+                onGenderChange={handleGenderChange}
+                onEarSizeChange={handleEarSizeChange}
+                onEyeStyleChange={handleEyeStyleChange}
+                onNoseStyleChange={handleNoseStyleChange}
+                onMouthStyleChange={handleMouthStyleChange}
+                onShirtStyleChange={handleShirtStyleChange}
+                onGlassesStyleChange={handleGlassesStyleChange}
+                onEyeBrowStyleChange={handleEyeBrowStyleChange}
+                onHairStyleChange={handleHairStyleChange}
                 submit={{
                     label: 'create channel'
                 }}

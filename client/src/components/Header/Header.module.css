@@ -1,0 +1,36 @@
+.container {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(89deg, rgb(21, 74, 189) 0.1%, rgb(26, 138, 211) 51.5%, rgb(72, 177, 234) 100.2%);
+}
+
+.title {
+    min-width: 20%;
+    max-width: 40%;
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 2.2vw;
+    font-weight: 700;
+    color: whitesmoke;
+}
+
+.icon {
+    color: lightcyan;
+}
+
+
+@media only screen and (max-width: 768px) {
+    /* For smarthphones and tablets: */
+    .title {
+        font-size: 6.2vw;
+    }
+
+    .icon {
+        font-size: 6.2vw;
+    }
+  }

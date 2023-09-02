@@ -3,4 +3,31 @@
     height: 100%;
     overflow: auto; 
     list-style: none;
+    border-radius: 15px;
+    padding: 15px;
+    background-image: url(https://static.vecteezy.com/system/resources/previews/003/502/545/original/robot-chatbot-icon-sign-flat-style-design-illustration-isolated-on-white-background-cute-ai-bot-helper-mascot-character-with-new-message-letter-envelope-symbol-business-assistant-vector.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 80%;
 }
+
+::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #444;
+  }

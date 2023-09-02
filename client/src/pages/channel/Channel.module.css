@@ -1,51 +1,77 @@
-.container, .header, .content, .messages, .sidebar, .form {
-    padding: 8px;
-} 
-
-.container {
-    width: 100vw;
-    height: 100vh;
-    background-color: whitesmoke;
-    color: #262626;
+.content,
+.messages,
+.sidebar,
+.form {
+  padding: 8px;
 }
 
-.header {
-    height: 10%;
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color:white;
 }
 
 .content {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 80%;
-    border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 80%;
 }
+
 
 .messages {
-    width: 80%;
-    height: 100%;
+  width: 80%;
+  height: 100%;
 }
 
-.sidebar {
-    width: 20%;
-    height: 100%;
-    border-left: 1px solid lightgray;
+.label {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 0.8vw;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+.dot {
+  width: .4vw;
+  height: .4vw;
+  border: 1px solid lightgray;
+  border-radius: 50%;
+  background-color: green;
+}
+
+.list {
+  height: 20vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  list-style-type: none;
+}
+
+.onlineUserContainer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.nickname {
+  font-size: .8vw;
+  letter-spacing: .4px;
 }
 
 @media only screen and (max-width: 768px) {
-    /* For smarthphones and tablets: */
-    .messages {
-        width: 100%;
-    }
-
-    .sidebar {
-        display: none;
-    }
+  /* For smarthphones and tablets: */
+  .messages {
+    width: 100%;
+  }
 }
 
 .formWrapper {
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
 }

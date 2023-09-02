@@ -1,8 +1,12 @@
-.avatars {
+.avatarLayout {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+}
+
+.avatar {
+  display: flex;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 45px;
 }
 
 .submitContainer {
