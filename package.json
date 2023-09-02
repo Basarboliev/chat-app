@@ -1,1 +1,16 @@
-{}
+{
+    "name": "ircchat",
+    "version": "1.0.0",
+    "description": "Private chatting platform built with Node and React",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server",
+      "build": "cd client && npm install && npm run build && cd ../server && npm install"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Basarboliev/chat-app.git"
+    },
+    "author": "Daniel Basarboliev",
+    "license": "MIT"
+  }
