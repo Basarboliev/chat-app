@@ -1,6 +1,6 @@
 import { HeartFilled } from '@ant-design/icons';
 import styles from './LikeButton.module.css';
-import { Button, Popover, Space } from 'antd';
+import { Popover } from 'antd';
 
 
 const LikeButton = ({ onClick, numberOfLikes, heartColor, usersLikedTheMessage }) => {
@@ -19,7 +19,7 @@ const LikeButton = ({ onClick, numberOfLikes, heartColor, usersLikedTheMessage }
     return (
         <div className={styles.wrapper}>
             <HeartFilled onClick={onClick} style={{ color: heartColor }} />
-            <Popover content={content} title="Title" trigger="click">
+            <Popover content={content} title="Likes:" trigger="click">
                 <span className={styles.numberOfLikes}>{numberOfLikes}</span>
             </Popover>
         </div>

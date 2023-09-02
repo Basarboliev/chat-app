@@ -99,7 +99,8 @@ const LoginSection = ({ socket }) => {
                 //If the channel does not exist, create a new one
                 if (!data.exists) {
                     localStorage.setItem("nickname", createData.nickname);
-                    localStorage.setItem("avatar", avatarConfig);
+                    const avatar = JSON.stringify(avatarConfig);
+                    localStorage.setItem("avatar", avatar);
                     socket.emit("create channel", createData.channelId, createData.nickname);
                 } else {
                     //If channel exists, write an error message to the user

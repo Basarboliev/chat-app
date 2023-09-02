@@ -10,7 +10,6 @@ import 'react-chat-elements/dist/main.css';
 import { ChatItem } from 'react-chat-elements';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { Collapse } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -127,7 +126,7 @@ const Channel = ({ socket }) => {
 
     return (
         <div className={styles.container}>
-            <Header title={channelId} />
+            <Header title={channelId} onlineUsers={users} notifications={systemMessages}/>
             <div className={styles.content}>
                 <Sidebar>
                     <Collapse

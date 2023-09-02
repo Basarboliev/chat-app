@@ -1,40 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+
 .container {
-    width: 100vw;
-    height: 10vh;
-    display: flex;
-    justify-content: center;
-    background: linear-gradient(89deg, rgb(21, 74, 189) 0.1%, rgb(26, 138, 211) 51.5%, rgb(72, 177, 234) 100.2%);
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(
+    89deg,
+    rgb(21, 74, 189) 0.1%,
+    rgb(26, 138, 211) 51.5%,
+    rgb(72, 177, 234) 100.2%
+  );
 }
 
 .title {
-    min-width: 20%;
-    max-width: 40%;
-    word-wrap: break-word;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    font-size: 2.2vw;
-    font-weight: 700;
-    color: whitesmoke;
+  min-width: 20%;
+  max-width: 40%;
+  word-wrap: break-word;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 2.2vw;
+  font-weight: 700;
+  color: whitesmoke;
 }
 
 .icon {
-    color: lightcyan;
+  color: lightcyan;
 }
 
+.options {
+  display: none;
+}
 
 @media only screen and (max-width: 768px) {
-    /* For smarthphones and tablets: */
-    .container {
-        justify-content: space-around;
-    }
-
-    .title {
-        font-size: 6.2vw;
-    }
-
-    .icon {
-        display: none;
-    }
+  /* For smarthphones and tablets: */
+  .container {
+    justify-content: space-around;
   }
+
+  .title {
+    font-size: 6.2vw;
+  }
+
+  .icon {
+    display: none;
+  }
+
+  .options {
+    display: flex;
+    align-items: center;
+    color: whitesmoke;
+    transform: scale(1.5);
+    gap: 18px;
+  }
+
+  .online {
+    list-style: none;
+  }
+
+  .user {
+    display: flex;
+    gap: 12px;
+    font-size: 1.2rem;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+  }
+
+  .dot {
+    display: inline-block;
+    width: .6rem;
+    height: .6rem;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    background-color: green;
+  }
+
+  .notifications {
+    list-style: none;
+  }
+}

@@ -60,12 +60,12 @@
   display: flex;
   justify-content: space-between;
   font-size: 1.2rem;
-  font-weight: bold;
-  font-family: "Poppins", sans-serif;
 }
 
 .header .sender {
   font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
 }
 
 .text {
