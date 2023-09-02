@@ -4,7 +4,6 @@ import { Tabs } from 'antd';
 import styles from './LoginSection.module.css';
 import Description from '../Description/Description';
 import { LoremIpsum } from 'react-lorem-ipsum';
-import Avatar from '../Avatar/Avatar';
 import SigninForm from '../SigninForm/SigninForm';
 
 const lorem = <LoremIpsum p={2} />;

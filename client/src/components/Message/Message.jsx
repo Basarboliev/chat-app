@@ -1,5 +1,4 @@
 import styles from './Message.module.css';
-import Avatar from '../Avatar/Avatar';
 import LikeButton from '../LikeButton/LikeButton';
 import { UserOutlined } from '@ant-design/icons';
 import NiceAvatar, { genConfig } from 'react-nice-avatar';
