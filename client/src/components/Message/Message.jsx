@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 import NiceAvatar, { genConfig } from 'react-nice-avatar';
 
 
-const Message = ({ sender, message, time, avatar, numberOfLikes, onClickLikeButton, heartColor, position = "left" }) => {
+const Message = ({ sender, message, time, avatar, numberOfLikes, onClickLikeButton, usersLikedTheMessage, heartColor, position = "left" }) => {
     let container = position === "left" ? styles.left : styles.right;
 
     return (
@@ -25,7 +25,7 @@ const Message = ({ sender, message, time, avatar, numberOfLikes, onClickLikeButt
                         {message}
                     </div>
                     <div className={styles.controls}>
-                        <LikeButton numberOfLikes={numberOfLikes} onClick={onClickLikeButton} heartColor={heartColor}/>
+                        <LikeButton numberOfLikes={numberOfLikes} onClick={onClickLikeButton} heartColor={heartColor} usersLikedTheMessage={usersLikedTheMessage}/>
                     </div>
                 </div>
             </div>

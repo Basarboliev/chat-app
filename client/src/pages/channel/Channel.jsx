@@ -91,7 +91,6 @@ const Channel = ({ socket }) => {
     }
 
 
-
     useEffect(() => {
         setNickname(localStorage.getItem("nickname"));
         const avatarString = localStorage.getItem("avatar");
@@ -193,6 +192,7 @@ const Channel = ({ socket }) => {
                                         numberOfLikes={message.likes}
                                         heartColor={heartColor}
                                         onClickLikeButton={() => handleLikeButtonClick(id, index, nickname)}
+                                        usersLikedTheMessage={message.usersLikedTheMessage}
                                         position={position}
                                     />
                                 );

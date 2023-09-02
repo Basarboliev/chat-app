@@ -7,4 +7,13 @@
 .numberOfLikes {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: whitesmoke;
+    cursor: pointer;
+}
+
+.likes {
+    list-style-type: none;
+}
+
+.likes li::before {
+    content: '❤️';
 }

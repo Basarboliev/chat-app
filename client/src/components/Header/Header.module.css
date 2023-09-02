@@ -26,11 +26,15 @@
 
 @media only screen and (max-width: 768px) {
     /* For smarthphones and tablets: */
+    .container {
+        justify-content: space-around;
+    }
+
     .title {
         font-size: 6.2vw;
     }
 
     .icon {
-        font-size: 6.2vw;
+        display: none;
     }
   }
