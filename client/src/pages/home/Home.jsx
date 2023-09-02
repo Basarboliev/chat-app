@@ -1,4 +1,3 @@
-import styles from "./Home.module.css";
 import Cover from "../../components/Cover/Cover";
 import LoginSection from "../../components/LoginSection/LoginSection";
 import Statistics from "../../components/Statistics/Statistics";
