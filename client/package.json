@@ -1,5 +1,4 @@
 {
-  "homepage": "http://daniel-basarboliev.github.io/chat-app",
   "name": "client",
   "version": "0.1.0",
   "proxy": "http://localhost:8080/",
@@ -13,7 +12,6 @@
     "@testing-library/user-event": "^13.5.0",
     "@uidotdev/usehooks": "^2.0.1",
     "antd": "^5.7.3",
-    "gh-pages": "^6.0.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-chat-elements": "^12.0.10",
@@ -35,8 +33,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
