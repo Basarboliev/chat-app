@@ -22,6 +22,7 @@ const tips = (
     </div>
 );
 
+
 const LoginSection = ({ socket }) => {
     const navigate = useNavigate();
     const [joinData, setJoinData] = useState({
