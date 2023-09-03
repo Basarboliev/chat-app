@@ -1,4 +1,4 @@
-# chat-app
+# IRC CHAT
 ![Екранна снимка 2023-09-03 160938](https://github.com/Basarboliev/chat-app/assets/129655770/a75305b7-19f0-4fbb-b8ae-ee7da20ec01d)
 
 ## Description
